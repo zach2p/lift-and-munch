@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Workout log and food tracker by Zach Perry.">
-<meta name="theme-color" content="#F5C518">
+<meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Lift and Munch">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="46" height="46" role="img" aria-label="Chicken wing mascot in sunglasses flexing"%3E%3Cg fill="none" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M14 27 L6 25.5 Q3.5 19 7 12.5" stroke="#3A1F0A" stroke-width="6"/%3E%3Cpath d="M14 27 L6 25.5 Q3.5 19 7 12.5" stroke="#E9A04A" stroke-width="3.2"/%3E%3Cpath d="M34 27 L42 25.5 Q44.5 19 41 12.5" stroke="#3A1F0A" stroke-width="6"/%3E%3Cpath d="M34 27 L42 25.5 Q44.5 19 41 12.5" stroke="#E9A04A" stroke-width="3.2"/%3E%3C/g%3E%3Cg fill="#E9A04A" stroke="#3A1F0A" stroke-width="1.5"%3E%3Ccircle cx="5.2" cy="19.5" r="3.1"/%3E%3Ccircle cx="42.8" cy="19.5" r="3.1"/%3E%3Ccircle cx="7.4" cy="11.4" r="2.7"/%3E%3Ccircle cx="40.6" cy="11.4" r="2.7"/%3E%3C/g%3E%3Cg fill="#F6EAD2" stroke="#3A1F0A" stroke-width="1.5"%3E%3Crect x="21" y="37" width="6" height="6" rx="1"/%3E%3Ccircle cx="20.8" cy="43.2" r="2.6"/%3E%3Ccircle cx="27.2" cy="43.2" r="2.6"/%3E%3C/g%3E%3Cpath d="M24 5.5 C34.5 5.5 38.5 14 37.5 22 C36.6 29.5 30.5 33.5 27.5 36.5 L27 39 L21 39 L20.5 36.5 C17.5 33.5 11.4 29.5 10.5 22 C9.5 14 13.5 5.5 24 5.5 Z" fill="#E9A04A" stroke="#3A1F0A" stroke-width="1.6"/%3E%3Cg fill="#C8772A"%3E%3Ccircle cx="16" cy="27" r="1.1"/%3E%3Ccircle cx="31.5" cy="28.5" r="1"/%3E%3Ccircle cx="20" cy="32" r=".9"/%3E%3Ccircle cx="28" cy="9.5" r=".9"/%3E%3Ccircle cx="33" cy="23" r=".8"/%3E%3C/g%3E%3Cellipse cx="18" cy="10.5" rx="3.2" ry="1.6" fill="#F7C47E" transform="rotate%28-25 18 10.5%29"/%3E%3Cg fill="#14181C" stroke="#3A1F0A" stroke-width="1.2"%3E%3Crect x="12.8" y="14.5" width="9.4" height="6.4" rx="2.6"/%3E%3Crect x="25.8" y="14.5" width="9.4" height="6.4" rx="2.6"/%3E%3C/g%3E%3Cpath d="M22 16.6 H26" stroke="#14181C" stroke-width="1.8" stroke-linecap="round"/%3E%3Cpath d="M14.6 16.4 L17.2 15.6 M27.6 16.4 L30.2 15.6" stroke="#FFFFFF" stroke-opacity=".75" stroke-width="1.1" stroke-linecap="round"/%3E%3Cpath d="M19 25.5 Q24 29.8 29 25.5" fill="none" stroke="#3A1F0A" stroke-width="1.7" stroke-linecap="round"/%3E%3C/svg%3E">
@@ -234,7 +234,41 @@ details>summary::-webkit-details-marker{display:none}
 #bnav button[aria-current="page"]::before{content:"";position:absolute;top:0;left:28%;right:28%;height:4px;border-radius:0 0 4px 4px;background:var(--plate)}
 #bnav svg{width:24px;height:24px}
 #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:.95rem;max-width:calc(100% - 32px);box-shadow:0 8px 24px -8px var(--shadow-lg);text-align:center}
-@media (prefers-reduced-motion:reduce){.switch input::after{transition:none}}
+/* Rest timer */
+.rest-row{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
+#rest{position:fixed;z-index:45;left:0;right:0;bottom:calc(72px + env(safe-area-inset-bottom,0px));margin:0 auto;width:min(42rem,calc(100% - 32px));background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 14px;box-shadow:0 12px 30px -10px var(--shadow-lg);display:flex;flex-direction:column;gap:10px}
+.rt-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rt-info{min-width:0;display:flex;flex-direction:column}
+.rt-l{font-size:.8rem;font-weight:600;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rt-t{font-family:var(--display);font-weight:800;font-size:2.3rem;line-height:1;font-variant-numeric:tabular-nums}
+.rt-btns{display:flex;gap:6px;flex:none}
+.rt-btns button{min-height:42px;min-width:48px;padding:0 10px;border-radius:9px;border:1px solid var(--muted);background:transparent;color:inherit;font-weight:700;cursor:pointer}
+.rt-bar{height:5px;border-radius:5px;background:rgba(128,128,128,.35);overflow:hidden}
+.rt-bar span{display:block;height:100%;width:100%;background:var(--plate);border-radius:inherit;transition:width .25s linear}
+#rest.done{background:var(--plate);color:var(--on-plate)}
+#rest.done .rt-btns button{border-color:var(--on-plate)}
+#rest.done .rt-bar span{background:var(--on-plate)}
+body.resting .wrap{padding-bottom:calc(200px + env(safe-area-inset-bottom,0px))}
+body.resting #toast{bottom:calc(172px + env(safe-area-inset-bottom,0px))}
+
+/* Launch screen: deliberately one look, pure black with white type, in both themes */
+#splash{position:fixed;inset:0;z-index:100;background:#000;color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:calc(28px + env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));cursor:pointer;transition:opacity .5s ease,visibility .5s}
+#splash.hide{opacity:0;visibility:hidden}
+.sp-brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:.04em}
+.sp-brand svg{width:40px;height:40px}
+.sp-main{max-width:44rem}
+.sp-q{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(3rem,13vw,6.5rem);line-height:.9;letter-spacing:-.01em;text-wrap:balance;margin:0}
+.sp-who{margin-top:20px;font-weight:600;font-size:1rem;display:flex;align-items:center;gap:12px;color:#C8C8C8}
+.sp-who::before{content:"";width:30px;height:3px;background:#F5C518;flex:none}
+.sp-foot{display:flex;flex-direction:column;gap:12px}
+.sp-bar{height:3px;background:#2A2A2A;border-radius:3px;overflow:hidden}
+.sp-bar span{display:block;height:100%;width:0;background:#F5C518;animation:spBar 3.6s linear forwards}
+.sp-skip{font-size:.85rem;color:#8C8C8C;margin:0}
+.sp-q.in,.sp-who.in{animation:spIn .55s cubic-bezier(.2,.8,.2,1) both}
+.sp-who.in{animation-delay:.12s}
+@keyframes spIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes spBar{to{width:100%}}
+@media (prefers-reduced-motion:reduce){.switch input::after,.rt-bar span{transition:none}.sp-q.in,.sp-who.in{animation:none}.sp-bar span{animation:none;width:100%}#splash{transition:none}}
 </style>
 </head>
 <body>
@@ -246,6 +280,16 @@ details>summary::-webkit-details-marker{display:none}
   <button type="button" data-act="page" data-page="nutrition" aria-current="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v7.5M4.5 3v5.5a2.5 2.5 0 0 0 5 0V3M7 11v10M17.5 21V3c-2.2 1.2-3.5 4-3.5 7.5V13h3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nutrition</button>
 </div></nav>
 <div id="toast" role="status" aria-live="polite" hidden></div>
+<div id="rest" role="timer" aria-label="Rest timer" hidden>
+  <div class="rt-top"><div class="rt-info"><span class="rt-l" id="rtl">Rest</span><span class="rt-t" id="rtt">1:30</span></div>
+    <div class="rt-btns"><button type="button" data-act="restAdj" data-s="-15" aria-label="15 seconds less">−15s</button><button type="button" data-act="restAdj" data-s="15" aria-label="15 seconds more">+15s</button><button type="button" id="rtSkip" data-act="restSkip">Skip</button></div></div>
+  <div class="rt-bar"><span id="rtb"></span></div>
+</div>
+<div id="splash" aria-hidden="true">
+  <div class="sp-brand" id="spb">Lift and Munch</div>
+  <div class="sp-main"><p class="sp-q" id="spq"></p><p class="sp-who" id="spw"></p></div>
+  <div class="sp-foot"><div class="sp-bar"><span></span></div><p class="sp-skip">Tap to start</p></div>
+</div>
 
 <script>
 (() => {
@@ -674,6 +718,9 @@ function liftToday() {
     const days = getSplit();
     h += `<section class="card"><p class="lbl">Switch this workout to</p><div class="chips">${days.map(dy => `<button type="button" class="chip" aria-pressed="${dy.id === s.dayId}" data-act="switchDay" data-day="${dy.id}">${esc(dy.name)}</button>`).join('')}</div><p class="muted small">Exercises change to the new day. Sets you already logged are kept for any exercise that's in both days.</p></section>`;
   }
+  const rl = restLen();
+  h += `<div class="rest-row"><span class="lbl">Rest timer</span><div class="chips">${[[0, 'Off'], [60, '1:00'], [90, '1:30'], [120, '2:00'], [180, '3:00']].map(([v, l]) => `<button type="button" class="chip" aria-pressed="${rl === v}" data-act="restSet" data-s="${v}">${l}</button>`).join('')}</div>${rl ? '<button type="button" class="link" data-act="restStart">Start now</button>' : ''}</div>
+    <p class="muted small">Tick a set done and the rest timer starts on its own.</p>`;
   h += (s.exercises || []).map((e, i) => exCard(e, i, d)).join('') || '<section class="card"><p class="muted">No exercises yet. Add one below.</p></section>';
   h += `<section class="card"><label for="addToday" class="lbl">Add an exercise</label><div class="row"><div class="combo"><input id="addToday" data-combo="add-today" ${comboAttrs} placeholder="Start typing, like incline or curl"></div><button type="button" class="btn" data-act="comboAdd" data-target="addToday">Add</button></div></section>`;
   h += `<div class="foot-actions"><p class="muted small">Your workout saves as you type.</p>${confirmBtn('delsess', 'Delete this workout', 'Tap again to delete', 'delSession')}</div>`;
@@ -970,7 +1017,21 @@ const ACTS = {
     ui.changeDay = false; ui.swap = null; render(); window.scrollTo(0, 0); toast('Switched to ' + day.name);
   },
   startEmpty() { put(liftKey(ui.liftDate), {date: ui.liftDate, dayId: null, dayName: 'Workout', exercises: []}, 0); ui.focus = 'addToday'; render(); },
-  setDone(d) { editSession(s => { const t = s.exercises[I(d.i)].sets[I(d.j)]; t.done = !t.done; }, 300); ui.focus = 'ck-' + d.i + '-' + d.j; render(); },
+  setDone(d) {
+    let nowDone = false, name = '';
+    editSession(s => { const e = s.exercises[I(d.i)], t = e.sets[I(d.j)]; t.done = !t.done; nowDone = t.done; name = e.name; }, 300);
+    ui.focus = 'ck-' + d.i + '-' + d.j; render();
+    if (nowDone) startRest(name);
+  },
+  restSet(d) { saveSettings({rest: I(d.s)}, 0); render(); toast(I(d.s) ? 'Rest timer set to ' + mmss(I(d.s)) : 'Rest timer is off'); },
+  restStart() { startRest('your set', true); },
+  restAdj(d) {
+    if (!restState) return;
+    restState.end += I(d.s) * 1000;
+    restState.total = Math.max(restState.total, Math.ceil((restState.end - Date.now()) / 1000));
+    lsSet(LS_REST, restState); tickRest();
+  },
+  restSkip() { stopRest(); },
   addSet(d) { editSession(s => { const e = s.exercises[I(d.i)]; const prev = e.sets[e.sets.length - 1]; e.sets.push({w: prev ? prev.w : '', r: '', done: false}); }, 300); render(); },
   rmSet(d) { editSession(s => { const e = s.exercises[I(d.i)]; if (e.sets.length > 1) e.sets.pop(); }, 300); render(); },
   fillLast(d) {
@@ -1150,6 +1211,87 @@ window.addEventListener('hashchange', () => {
   const h = location.hash.slice(1);
   if ((h === 'lifting' || h === 'nutrition') && h !== ui.page) { ui.page = h; saveUi(); render(); }
 });
+
+/* ---------- rest timer ---------- */
+const LS_REST = 'lf.rest.v1';
+let restState = null, restIv = null, audioCtx = null, wake = null, restHideT = null;
+const mmss = s => Math.floor(s / 60) + ':' + pad(s % 60);
+function restLen() { const v = getSettings().rest; return v == null ? 90 : v; }
+function ensureAudio() {
+  try { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; if (!audioCtx) audioCtx = new AC(); if (audioCtx.state === 'suspended') audioCtx.resume(); } catch (e) {}
+}
+function beep() {
+  if (!audioCtx) return;
+  try {
+    const t0 = audioCtx.currentTime;
+    [0, .25, .5].forEach((dl, k) => {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = 'sine'; o.frequency.value = k === 2 ? 1320 : 880;
+      g.gain.setValueAtTime(0.0001, t0 + dl); g.gain.exponentialRampToValueAtTime(0.3, t0 + dl + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dl + 0.18);
+      o.connect(g); g.connect(audioCtx.destination); o.start(t0 + dl); o.stop(t0 + dl + 0.2);
+    });
+  } catch (e) {}
+}
+function requestWake() { try { if (navigator.wakeLock && !wake) navigator.wakeLock.request('screen').then(w => { wake = w; w.addEventListener && w.addEventListener('release', () => { wake = null; }); }).catch(() => {}); } catch (e) {} }
+function releaseWake() { try { if (wake) wake.release(); } catch (e) {} wake = null; }
+function startRest(label, manual) {
+  const len = restLen(); if (!len) return;
+  ensureAudio();
+  restState = {end: Date.now() + len * 1000, total: len, label};
+  lsSet(LS_REST, restState); showRest();
+}
+function showRest() {
+  const el = $('#rest'); clearTimeout(restHideT);
+  el.hidden = false; el.classList.remove('done'); document.body.classList.add('resting');
+  $('#rtSkip').textContent = 'Skip';
+  clearInterval(restIv); restIv = setInterval(tickRest, 250); tickRest(); requestWake();
+}
+function tickRest() {
+  if (!restState) return;
+  const left = Math.max(0, Math.ceil((restState.end - Date.now()) / 1000));
+  $('#rtt').textContent = mmss(left);
+  $('#rtl').textContent = 'Rest after ' + restState.label;
+  $('#rtb').style.width = Math.max(0, Math.min(100, left / restState.total * 100)) + '%';
+  if (left <= 0) finishRest();
+}
+function finishRest() {
+  clearInterval(restIv); restIv = null; restState = null; lsSet(LS_REST, null);
+  const el = $('#rest'); el.classList.add('done');
+  $('#rtl').textContent = 'Rest is over'; $('#rtt').textContent = 'Next set'; $('#rtSkip').textContent = 'Close'; $('#rtb').style.width = '0%';
+  beep(); try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {}
+  releaseWake();
+  restHideT = setTimeout(() => { if (!restState) hideRest(); }, 6000);
+}
+function hideRest() { $('#rest').hidden = true; document.body.classList.remove('resting'); }
+function stopRest() { clearInterval(restIv); restIv = null; restState = null; lsSet(LS_REST, null); releaseWake(); clearTimeout(restHideT); hideRest(); }
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && restState) { tickRest(); requestWake(); } });
+(() => { const saved = lsGet(LS_REST); if (saved && saved.end > Date.now()) { restState = saved; showRest(); } })();
+
+/* ---------- launch screen ---------- */
+const QUOTES = [
+  ['The last three or four reps is what makes the muscle grow.', 'Arnold Schwarzenegger'],
+  ['The mind is the limit.', 'Arnold Schwarzenegger'],
+  ['Yeah buddy! Light weight!', 'Ronnie Coleman'],
+  ["Ain't nothin' but a peanut.", 'Ronnie Coleman'],
+  ["Stimulate, don't annihilate.", 'Lee Haney'],
+];
+(() => {
+  const el = $('#splash'); if (!el) return;
+  $('#spb').innerHTML = PLATE + '<span>Lift and Munch</span>';
+  let k = Math.floor(Math.random() * QUOTES.length);
+  const q = $('#spq'), w = $('#spw');
+  const show = () => {
+    const [text, who] = QUOTES[k % QUOTES.length]; k++;
+    q.textContent = text; w.textContent = who;
+    [q, w].forEach(n => { n.classList.remove('in'); void n.offsetWidth; n.classList.add('in'); });
+  };
+  show();
+  const iv = setInterval(show, 1800);
+  let gone = false;
+  const done = () => { if (gone) return; gone = true; clearInterval(iv); el.classList.add('hide'); setTimeout(() => el.remove(), 550); };
+  const t = setTimeout(done, 3600);
+  el.addEventListener('click', () => { clearTimeout(t); done(); });
+})();
 
 render();
 initDb();
